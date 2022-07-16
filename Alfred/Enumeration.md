@@ -1,3 +1,2 @@
-![0358118ab835c546c4b96975b26b3e38.png](/_resources/0358118ab835c546c4b96975b26b3e38.png)
-
+![Alt text](jkawach/THM-writeups/Alfred/_resources/test.png?raw=true "Title")
 blah blah
