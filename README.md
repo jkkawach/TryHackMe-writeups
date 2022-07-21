@@ -4,7 +4,7 @@ Although these are write-ups for TryHackMe rooms, the write-ups don't make too m
 
 1. **Recon.** Since we know our target machine in each case, this step almost always consists of just an autorecon/nmap scan. In a real-life engagement, one would likely do a bit more work here (e.g. scanning for live hosts or doing some DNS recon).
 2. **Enumeration.** Once we've identified any ports of interest, we begin a deeper dive into each of the services running on our ports. Our goal is to identify at least one possible vulnerability which we can exploit in order to gain initial access to the target machine.
-3. **Exploitation.** Once we've identified the vulnerabilities, we begin looking for an exploit. This step consists of the execution of the exploit used to gain initial access. This section usually ends once we have obtain the user flag, assuming it wasn't already found earlier.
+3. **Exploitation.** Once we've identified the vulnerabilities, we begin looking for an exploit. This step consists of the execution of the exploit used to gain initial access. This section usually ends once we have obtained the user flag, assuming it wasn't already found earlier.
 4. **Post-Exploitation.** Once we have initial access, we try to escalate privileges. This section consists of methods and (some unsuccessful) attempts to gain root access, and ends once we have obtained the root flag.
 
 Useful resources and tools:
