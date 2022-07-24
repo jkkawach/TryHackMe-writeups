@@ -8,8 +8,7 @@ Although these are write-ups for TryHackMe rooms, the write-ups don't make too m
 
 Useful resources and tools:
 
-- TJnull's [Joplin pentest template](https://github.com/tjnull/TJ-JPT) for note-taking.
-- TJnull's [OSCP preparation guide](https://www.netsecfocus.com/oscp/2019/03/29/The_Journey_to_Try_Harder-_TJNulls_Preparation_Guide_for_PWK_OSCP.html).
+- TJnull's [Joplin pentest template](https://github.com/tjnull/TJ-JPT) for note-taking and [OSCP preparation guide](https://www.netsecfocus.com/oscp/2019/03/29/The_Journey_to_Try_Harder-_TJNulls_Preparation_Guide_for_PWK_OSCP.html).
 - John J Hacking's [OSCP preparation guide](https://johnjhacking.com/blog/the-oscp-preperation-guide-2020).
 - [HackTricks](https://book.hacktricks.xyz) and [Pentest book](https://pentestbook.six2dez.com) for general pentesting methodology.
 - [AutoRecon](https://github.com/Tib3rius/AutoRecon), an incredibly powerful network reconnaissance tool.
