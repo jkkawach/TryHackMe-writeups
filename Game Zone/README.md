@@ -1,3 +1,5 @@
+# Enumeration
+
 `autorecon 10.10.63.128` discovers open TCP ports 22 and 80. We use `nmap -T4 -sC -sV --version-all --osscan-guess -A -p 22,80 10.10.63.128` for a more detailed scan.
  
 ![9916f7d7f6c49c76455d68cef78841c2.png](/Game%20Zone/_resources/9916f7d7f6c49c76455d68cef78841c2-1.png)

@@ -1,3 +1,5 @@
+# Enumeration
+
 We begin with an autorecon scan, which quickly identifies ports 80 and 443 as being open. We run the usual follow-up scan with nmap to verify this. 
  
 ![f44abe2189a06cde038722087593642a.png](/Mr%20Robot%20CTF/_resources/f44abe2189a06cde038722087593642a-1.png)

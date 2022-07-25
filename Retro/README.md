@@ -1,5 +1,7 @@
 **Note: I had significant issues working through this box, as the connection would frequently be dropped. I'm not sure if this is because I was using Kali through VMware. I ended up switching to the built-in Kali box on TryHackMe, which seemed to help.**
 
+# Enumeration
+
 A quick nmap scan reveals that ports 80 and 3389 are open.
  
 ![89a228305530310cf47a347e88c772d6.png](/Retro/_resources/89a228305530310cf47a347e88c772d6-1.png)

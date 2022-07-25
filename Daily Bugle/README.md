@@ -1,3 +1,5 @@
+# Enumeration
+
 A quick autorecon scan reveals a number of open ports. We confirm with an nmap scan.
  
 ![a6ff4cf9e9f985bd7cb1e2491264d1a9.png](/Daily%20Bugle/_resources/a6ff4cf9e9f985bd7cb1e2491264d1a9.png)

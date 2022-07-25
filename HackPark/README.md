@@ -1,3 +1,5 @@
+# Enumeration
+
 Using autorecon, we quickly determine that ports 80 and 3389 are open.
  
 ![efa067d955098e8f8ee6b381e60c64ab.png](/HackPark/_resources/efa067d955098e8f8ee6b381e60c64ab-1.png)

@@ -1,3 +1,5 @@
+# Enumeration
+
 We begin with an autorecon scan, followed by an nmap scan.
  
 ![1422fa228645db8325993638401f751d.png](/Skynet/_resources/1422fa228645db8325993638401f751d.png)
