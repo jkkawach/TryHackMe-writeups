@@ -48,7 +48,7 @@ This looks promising! Notice that `whoami` is the default command listed here. W
 
 # Exploitation
 
-We will make use of the [reverse shell script](https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1) provided in the exerise. We first set up a web server on port 9999:
+We will make use of the [reverse shell script](https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1) provided in the exercise. We first set up a web server on port 9999:
  
 
 ![d135c1b5422b75eb6d5b67c8c0f4a092.png](/Alfred/_resources/d135c1b5422b75eb6d5b67c8c0f4a092-1.png)
