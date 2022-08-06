@@ -105,8 +105,6 @@ Luckily, there is another method for gaining initial access into the system. Rec
 
 # Post-exploitation
 
-(Note: I had a lot of issues reliably connecting to the Windows machine; this made RDPing a lot more painful that it should have been, and I had to reset the box a few times. I'm not sure if this is a me-problem or a THM-problem.)
-
 Now that we have initial access, let's see if we can gain Administrator access. Looking around a bit, we see that the page to [CVE-2019-1388](https://nvd.nist.gov/vuln/detail/CVE-2019-1388) has been bookmarked in Chrome. This is a Windows Certificate Dialog Elevation of Privilege Vulnerability. Information on how to exploit this vulnerability can be found [here](https://justinsaechao23.medium.com/cve-2019-1388-windows-certificate-dialog-elevation-of-privilege-4d247df5b4d7). A brief summary is also given [here](https://github.com/nobodyatall648/CVE-2019-1388).
 
 To start, we download an executable from [Packet Storm](https://packetstormsecurity.com/files/14437/hhupd.exe.html). Note that this file is also found in the Windows machine's recycling bin.
