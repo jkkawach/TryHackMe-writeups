@@ -1,6 +1,6 @@
 # TryHackMe room writeups
 
-Here you can find a few (semi-)detailed write-ups of rooms on TryHackMe. These notes are mostly intended for personal use, but may be helpful for others who are working through these rooms. For obvious reasons, I've tried to avoid spoilers as much as possible.
+Here you can find a few (semi-)detailed write-ups of CTFs from TryHackMe. These notes are mostly intended for personal use, but may be helpful for others who are working through these rooms. For obvious reasons, I've tried to avoid spoilers as much as possible.
 
 Although these are write-ups for TryHackMe rooms, the write-ups don't make too many references to the individual tasks or exercises. My main goal here was to develop a methodology for pentesting and note-taking. Rather than dividing each write-up by task, I opted for a more uniform way of presenting the information. Thus, each write-up consists of three parts:
 
