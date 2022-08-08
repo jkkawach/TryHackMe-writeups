@@ -81,7 +81,7 @@ Digging around, we eventually find an interesting file. Unfortunately, we don't 
  
 ![1844ee5fae87970bb5e3a756ee69b538.png](/Mr%20Robot%20CTF/_resources/1844ee5fae87970bb5e3a756ee69b538-1.png)
  
-We do, however, have access to a hash file. Cracking thehash reveals the password `abcdefghijklmnopqrstuvwxyz`.
+We do, however, have access to a hash file. Cracking the hash reveals the password `abcdefghijklmnopqrstuvwxyz`.
  
 ![6cfb407e22dcf91f5146869db5f8796c.png](/Mr%20Robot%20CTF/_resources/6cfb407e22dcf91f5146869db5f8796c-1.png)
  
@@ -94,8 +94,7 @@ So, let's upgrade our shell using `python -c 'import pty; pty.spawn("/bin/bash")
  
 ![9048b29fef3190be8463b1662fadc3da.png](/Mr%20Robot%20CTF/_resources/9048b29fef3190be8463b1662fadc3da-1.png)
  
-Now let's try and root the machine. We can esscalating privileges by looking for SUID files with `find / -perm -u=s -type f 2>/dev/null
-`, we find a few.
+Now let's root the machine. We can escalate our privileges by looking for SUID files with `find / -perm -u=s -type f 2>/dev/null`; we find a few.
  
 ![3ef1260af740e2b526300c3198f7ec23.png](/Mr%20Robot%20CTF/_resources/3ef1260af740e2b526300c3198f7ec23-1.png)
  
